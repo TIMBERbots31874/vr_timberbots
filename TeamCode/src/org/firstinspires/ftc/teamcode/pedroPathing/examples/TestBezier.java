@@ -19,6 +19,7 @@ public class TestBezier extends OpMode {
     private PathChain backwards;
 
     boolean forward = true;
+    boolean turning = false;
 
     /**
      * This initializes the Follower and creates the PathChain for the "circle". Additionally, this
@@ -49,7 +50,6 @@ public class TestBezier extends OpMode {
                         new Pose(48.000, 48.000)
                 ))
                 .setTangentHeadingInterpolation()
-                .setReversed()
                 .build();
     }
 
@@ -66,12 +66,13 @@ public class TestBezier extends OpMode {
     public void loop() {
         follower.update();
         if (!follower.isBusy()) {
-            if (forward) {
-                forward = false;
-                follower.followPath(backwards);
+            if (turning){
+                turning = false;
+                forward = !forward;
+                follower.followPath(forward? forwards : backwards);
             } else {
-                forward = true;
-                follower.followPath(forwards);
+                turning = true;
+                follower.turnTo(Math.toRadians(forward? 270 : 90));
             }
         }
     }
