@@ -21,6 +21,8 @@ public class TestBezier extends OpMode {
     boolean forward = true;
     boolean turning = false;
 
+    boolean turning = false;
+
     /**
      * This initializes the Follower and creates the PathChain for the "circle". Additionally, this
      * initializes the FTC Dashboard telemetry.

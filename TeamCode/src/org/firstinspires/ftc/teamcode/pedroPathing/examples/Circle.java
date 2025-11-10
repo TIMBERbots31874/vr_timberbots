@@ -40,7 +40,7 @@ public class Circle extends OpMode {
                 .addPath(new BezierCurve(new Pose(-RADIUS, RADIUS), new Pose(-RADIUS, 0), new Pose(0, 0)))
                 .setHeadingInterpolation(HeadingInterpolator.facingPoint(0, RADIUS))
                 .build();
-
+				
         follower.setPose(new Pose(0, 0, Math.toRadians(90)));
 
         follower.followPath(circle);
